@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import {MONGO_URL} from '../config.js'
 
-(async()=>{
+const conectarDb = (async()=>{
 try {
     mongoose.set("strictQuery", false);
     const db = await mongoose.connect(MONGO_URL)
@@ -9,4 +9,6 @@ try {
 } catch (error) {
     console.log(error)
 }
-})()
+})
+
+export default conectarDb;

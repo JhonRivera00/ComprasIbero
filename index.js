@@ -1,9 +1,39 @@
-import express from 'express'
-import "./src/database/db.js"
-import { PORT } from './src/config.js';
+import conectarDb from "./src/database/db.js"
+import readline from 'readline';
 
-const app = express();
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-app.listen(PORT,()=>{
-    console.log("Conectado al servidor ", PORT)
-})
+const preguntar=(question)=> {
+    return new Promise((resolve) => {
+      rl.question(question, (answer) => {
+        resolve(answer);
+      });
+    });
+  }
+async function main() {
+
+    await conectarDb();
+    console.log("¿ Que deseas hacer ?")
+    console.log("1. Iniciar Sesion")
+    console.log("2. Registrarte")
+    const login = await preguntar("__")
+
+    if(login == 1){
+        console.log("Inicia Sesion")
+        //Iniciar sesion
+        const usuario = await preguntar("Ingresa el usuario: ");
+        const contrasena = await preguntar("Ingresa la contraseña: ");
+
+        
+    }
+
+
+    rl.close();
+  }
+
+  main();
+
+  export default main;
