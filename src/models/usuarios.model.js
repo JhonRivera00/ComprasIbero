@@ -14,10 +14,11 @@ const usuarioSchema = new Schema({
     },
     contrasena: {
         type: String,
-        required: true
+       required: true
     },
     asociado: {
         type: Boolean,
+        required: true,
         default: false
     },
     municipio: {
@@ -25,13 +26,22 @@ const usuarioSchema = new Schema({
         required: true
     },
     grupoProductor: {
-        type: String,
+        type:String,
         required: true
     },
     rol: {
         type: String,
         required: true,
+        default: 'Productor',
         enum: ['Admin', 'Acopiador', 'Productor']
+    },
+    acopiador: {
+        type: String,
+        default:""
+    },
+    estado: {
+        type: Boolean,
+        default: false
     }
 
 },

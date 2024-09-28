@@ -1,36 +1,98 @@
-import Usuarios from '../models/usuario.model.js'
+import jwt from "jsonwebtoken";
+import Usuarios from "../models/usuarios.model.js";
+import { JWT_SECRET } from "../config.js";
+import { main, menuAcopiador } from "../../index.js";
 
 
-export const getUsuarios = async (req,res,next)=>{
+
+export const postUsuarios = async (nombre, cedula, asociado, municipio, contrasena, grupoProductor, rol, acopiador, estado) => {
     try {
-        const usuarios = await Usuarios.find();
-        return res.status(200).json(usuarios);
-    } catch (error) {
-        console.log(error)
-        res.status(400).json({message: error.message});
-    }
-}
-
-export const postUsuarios = async (req,res,next)=>{
-    try {
-        const {nombre,cedula,contrasena,asociado,municipio,grupoProductor,rol} = req.body;	
-        const hashClave = await Usuarios.hasPassword(contrasena);
         
+        if (contrasena) {
+            const hashClave = await Usuarios.hasPassword(contrasena);
+            contrasena = hashClave;
+
+        } else {
+            contrasena = "12345678"
+        }
+
         const userSave = {
             nombre: nombre,
             cedula: cedula,
-            contrasena: hashClave,
             asociado: asociado,
             municipio: municipio,
+            contrasena: contrasena,
             grupoProductor: grupoProductor,
-            rol: rol
+            rol: rol,
+            acopiador: acopiador,
+            estado
         }
-        
+
         const usuario = new Usuarios(userSave);
         const usuarioSave = await usuario.save();
-        return res.status(201).json({message:'Usuario agregado exitosamente',usuarioSave});
+        console.log('Usuario agregado exitosamente', usuarioSave );
+        return main();
     } catch (error) {
         console.log(error)
-        res.status(400).json({message: error.message});
     }
 };
+
+export const loginUsuario = async (cedula, contrasena) => {
+    try {
+        const usuario = await Usuarios.findOne({ cedula: cedula });
+        if (!usuario) {
+           console.log('Usuario no encontrado \n' );
+           return main();
+        }
+        if (usuario.rol === 'Productor') {
+           console.log('No Autorizado' );
+           return main();
+        }
+        if (usuario.estado === false) {
+           console.log('Usuario no autorizado' );
+           return main(); 
+        }
+        const validarContrasena = await Usuarios.validatePassword(contrasena, usuario.contrasena);
+        if (!validarContrasena) {
+           console.log('Contraseña incorrecta' );
+           return main();
+        }
+        const token = jwt.sign({ id: usuario._id, rol: usuario.rol }, JWT_SECRET, {
+            expiresIn: "7h"
+        });
+        switch (usuario.rol) {
+            case 'Admin':
+                console.log( 'Bienvenido administrador', token );
+                return main();
+            case 'Acopiador':
+                if (usuario.state = false) {
+                    console.log( 'Usuario no autorizado' );
+                    return main();
+                }
+               console.log( 'Bienvenido acopiador', "token: ",token );
+               return menuAcopiador();
+
+            case 'Productor':
+               console.log( 'No Autorizado' );
+               
+               return main();
+            default:
+               console.log( 'Usuario no encontrado' );
+               return main();
+        }
+
+
+    } catch (error) {
+        console.log(error);
+        return main();
+    }
+};
+
+export const getUsuarios = async (req, res, next) => {
+    try {
+        const usuarios = await Usuarios.find().select('-contrasena');
+        console.log("Usuarios: ", usuarios)
+    } catch (error) {
+        console.log(error)
+    }
+}
