@@ -1,9 +1,9 @@
-# Proyecto en Desarrollo de Coomepcafe
+# Proyecto en Desarrollo de ComprasIbero
 
 ## Problematica Identificada
 La problemática principal en el proyecto de Coomepcafé es la falta de visibilidad en tiempo real sobre el café comprado en las zonas de acopio, lo que impide tomar decisiones oportunas cuando el café llega a la bodega central. Además, se utiliza un sistema de facturas físicas que deben ser reingresadas al sistema por los administradores, generando un doble trabajo y aumentando el riesgo de pérdida de facturas o errores de transcripción.
 
-## Solución Propuesta para Coomepcafé
+## Solución Propuesta para ComprasIbero
 Este proyecto digitaliza y optimiza el proceso de registro de compras en las zonas de acopio para mejorar la visibilidad en tiempo real y reducir el doble trabajo. Los acopiadores podrán registrar las compras a través de una aplicación móvil/web, eliminando el uso de facturas físicas.
 
 ### Principales funcionalidades:
