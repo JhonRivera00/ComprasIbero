@@ -1,0 +1,810 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+:root {
+    /* Colors */
+    --body-color: #ffffff;
+    --sidebar-color: #FFFFFF;
+    --White-color: #FFFFFF;
+    --primary-color: #0A0A0B;
+    --secondary-color: #3aa231;
+    --gray-color: #212529;
+    --primary-color-light: #e5e6e8;
+    --togle-color: #DDD;
+    --text-color: #3A3A3F;
+    --green-color: rgb(14, 117, 55);
+    --red-color: #ff0000;
+    --orange-color: #FFA500;
+    --blue-color-light: #9BD3FC;
+    --green-color-light: #6BFF47;
+
+    --primary-gradient: linear-gradient(90deg, rgba(130, 132, 142, 1) 0%, rgba(88, 89, 98, 1) 55%);
+    --secondary-gradient: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 64%);
+
+
+    /* Transitions */
+
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+
+    /* Box Shadow */
+
+    --primary-box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.75);
+    --secondary-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.57);
+    --dow-box-shadow: 15px 13px 19px -6px rgba(0, 0, 0, 0.12);
+}
+
+.valor-container {
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .valor-container:hover .valor-completo {
+    display: block;
+  }
+  .valor-completo {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  display: none;
+  z-index: 1000;
+}
+.container-internal {
+    max-width: 100%;
+    max-height: 100%;
+
+}
+.container-login {
+    background-image: url(..//assets/imagenes/image_fondo.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: auto; 
+}
+
+.centrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container-login .container-formulario {
+    margin-top: 15%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 20px;
+    height: 550px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.container-login .container-formulario h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.container-login .container-formulario .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-login .container-formulario .logo img {
+    width: 80%;
+    margin-top: -20px;
+    margin-bottom: -20px;
+}
+
+.container-login .container-formulario input {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px 0;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.container-login .container-formulario input[type="text"],
+input[type="password"] {
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: none;
+}
+
+.container-login .container-formulario input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.container-login .container-formulario input[type="submit"]:hover {
+    background-color: #555;
+}
+
+.container-login .container-formulario .signin {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-login .container-formulario .signin button {
+    width: 250px;
+    height: 40px;
+    margin: 20px 0px 15px 0px;
+    background-color: #aeaeae; /* Color de fondo verde */
+    color: #fffcfc; /* Color del texto blanco */
+    border: none;
+    padding: 0px 24px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.container-login .container-formulario .signin button:hover {
+    background-color: #787878; /* Color de fondo verde más oscuro al pasar el mouse */
+}
+
+.container-login .container-formulario .signin p {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.container-login .container-formulario .signin a {
+    color: #333;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+
+.password-input-container {
+    position: relative;
+}
+
+.toggle-password-button {
+    width: 40px; /* Establece un ancho fijo */
+    height: 40px; /* Ajusta la altura según sea necesario */
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+
+
+/* ======================     Nav    =============================  */
+
+.container-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    height: 80px;
+}
+
+.navbar-toggler {
+    margin-top: -10px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: end;
+}
+
+.container-nav .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    margin-left: 60px;
+}
+
+.container-nav .logo .texto {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.container-nav .logo span {
+    font-size: 1.2rem;
+    font-weight: 700;
+    width: auto;
+}
+
+.container-nav .logo p {
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.container-nav .logo img {
+    margin-left: 20px;
+    margin-top: -5px;
+    width: 100%;
+    /* Cambia el valor de width a 100% */
+    height: auto;
+    /* Esto asegura que la altura se ajuste automáticamente para mantener la proporción de la imagen */
+}
+
+
+.container-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-links a {
+    margin: 0 10px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.container-links .links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-links .links i {
+    font-size: 12px;
+    color: var(--secondary-color);
+}
+
+.container-links .links:hover i,
+.container-links .links:hover a {
+    font-size: 12px;
+    color: var(--green-color)
+}
+
+.container-content {
+    transition: margin-top 0.3s ease;
+    /* Transición suave */
+
+}
+
+.menu-open .container-content {
+    margin-top: 160px;
+    /* Margen superior adicional cuando el menú está abierto */
+}
+
+.container-nav .container-links .nav-link.active {
+    border-bottom: 2px solid var(--secondary-color);
+    /* Agrega una línea inferior al enlace activo */
+}
+
+.container-nav .container-links .log-out-2 {
+    display: none;
+}
+
+/* ==========================       MEDIA SCREEN NAV     ======================================= */
+
+@media screen and (max-width: 1000px) {
+    .container-links {
+        background-color: var(--White-color);
+    }
+
+    .log-out {
+        display: none;
+    }
+
+    .container-nav .container-links .log-out-2 {
+        display: block;
+    }
+
+}
+
+/* ==========================     FONDO HOME     ======================================= */
+
+.fondo_home {
+    background-image: url(../assets/imagenes/logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 60vh;
+}
+
+/* ==========================     CONTENEDOR HOME     ======================================= */
+
+
+/* ========================  Header   ==================================== */
+
+.container-facturas {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    overflow: auto;
+}
+
+.Header {
+    min-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    height: 40px;
+    color: var(--White-color);
+    font-weight: 600;
+    height: 40px;
+}
+
+.Header h5 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--White-color);
+    margin-bottom: 10px;
+}
+
+.Header .container {}
+
+/* =========================  Title ====================== */
+
+
+.container-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 60px;
+    border-radius: 10px 10px 0px 0px;
+
+}
+
+.container-title h3 {
+    text-align: start;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.container-selector {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 60px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.container-selector .selector {
+    margin-right: 30px;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* =========================  Body ====================== */
+
+.conatiner-body {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    
+    height: calc(100vh - 300px);
+    background-color: var(--White-color);
+}
+
+.conatiner-body h5 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.container-opciones {
+    display: flex;
+    align-items: start;
+    margin-top: -4px;
+}
+
+.container-opciones button {
+    display: flex;
+    padding-left: 0;
+    justify-content: start;
+    margin-right: 3px;
+}
+
+.container-opciones button:hover {
+    color: var(--secondary-color);
+}
+
+.fila {
+    border-bottom: solid 1px #6d6d6d;
+}
+
+
+/* ========================   Footer  ==================== */
+
+.container-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: var(--White-color);
+    font-weight: 600;
+    border-radius: 0px 0px 10px 10px;
+    height: 40px;
+}
+
+.container-footer h5 {
+    color: var(--White-color);
+    padding-top: 10px;
+}
+
+
+/* ===============================  Productores ====================================== */
+
+.container-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: auto;
+    background-color: var(--White-color);
+    border-radius: 10px;
+    height: 35px;
+}
+
+.container-search input {
+    padding-left: 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    height: 35px;
+    width: 340px;
+}
+
+.button-addon2 {
+    border-radius: 10px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    height: 30px;
+}
+
+
+/* ===============================  Acopiadores ====================================== */
+
+.container-estado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    padding-top: 10px ;
+    border-radius: 10px;
+    height: 20px;
+    margin: 0;
+}
+
+.activo {
+    background-color: green;
+    /* Color verde para el estado activo */
+}
+
+.inactivo {
+    background-color: red;
+    /* Color rojo para el estado inactivo */
+}
+
+.container-estado h5 {
+    color: var(--White-color);
+}
+
+
+/* ================================================================================= */
+/* ===========================  Acopiadores ======================================== */
+/* ================================================================================= */
+
+.nav-acopiadores .container-links a p {
+    margin: 0 10px;
+    font-weight: 600;
+    color: var(--orange-color);
+}
+
+.nav-acopiadores .container-links .links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav-acopiadores .container-links .links i {
+    font-size: 12px;
+    color: var(--orange-color);
+}
+
+.nav-acopiadores .container-links .nav-link.active {
+    border-bottom: 2px solid var(--orange-color);
+    /* Agrega una línea inferior al enlace activo */
+}
+
+.btn-cerrar-sesion {
+    color: var(--orange-color) !important;
+    font-weight: 600;
+}
+
+.container-footer-vacio {
+    height: 10px;
+}
+
+/* ================================================================================= */
+/* ======================= Container Crear Factura ================================= */
+
+.container-crear-factura {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-crear-factura .factura {
+    margin-top: 20px;
+    max-width: 600px;
+    height: auto;
+    background-color: #ededed;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 9px 13px 18px 2px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 9px 13px 18px 2px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 9px 13px 18px 2px rgba(0, 0, 0, 0.45);
+}
+
+.container-crear-factura .factura .container {
+    margin-top: 15px;
+}
+
+.container-crear-factura .factura .container .title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #686868;
+}
+
+.container-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.container-crear-factura .factura .container input {
+    width: 100%;
+    height: 35px;
+    margin: 5px 0;
+    border-radius: 10px;
+    border: none;
+    padding-left: 12px;
+    font-size: 14px;
+    outline: none; /* Para quitar el borde al enfocar */
+
+}
+.container-crear-factura .factura .container .observaciones {
+    min-height: 80px;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    padding-top: 5px;
+    margin-top: 10px;
+}
+
+.container-crear-factura .factura .container .observaciones:focus {
+    outline: none; /* Eliminar el borde al enfocar */
+}
+
+.container-crear-factura .factura .container input:focus {
+    border: none; 
+}
+.container-crear-factura .factura .container .select-form{
+    margin: 5px;
+    font-size: 13px;
+    height: 35px;
+}
+
+.container-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.container-crear-factura .factura .container .btn-guardar {
+    background-color: #306d2b;
+    color: var(--White-color);
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 250px;
+    scale: 0.9;
+    transition: all 0.3s ease;
+    box-shadow: var(--secondary-box-shadow);
+}
+
+.container-crear-factura .factura .container .btn-guardar:hover{
+    background-color: #287923;
+    scale: 0.95;
+    box-shadow: var(--secondary-box-shadow);
+    transition: all 0.3s ease;
+}
+
+.container-crear-factura .tabla-compra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 92%;
+    margin-left: 10px;
+}
+
+.container-crear-factura .tabla-compra .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-crear-factura .tabla-compra .header{
+    background-color: #727272;
+    color: var(--White-color);
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 10px 0 0 ;
+}
+
+.container-crear-factura .tabla-compra .body{
+    background-color: var(--White-color);
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: start;
+}
+
+.container-crear-factura .tabla-compra .body input{
+    padding: 0;
+}
+
+.container-crear-factura .tabla-compra .footer{
+    background-color: #727272;
+    color: var(--White-color);
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:  0 0  10px 10px;
+    position: relative;
+}
+
+.container-crear-factura .tabla-compra .footer .container-add{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: -46px;
+    top: -35px;    
+}
+.container-crear-factura .tabla-compra .footer .container-remove{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: -46px;
+    top: -35px;    
+}
+.container-crear-factura .tabla-compra .footer .container-remove button{
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 24px;
+    border: none;
+    background-color: #686868;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--White-color);
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: var(--secondary-box-shadow);
+    scale: 0.95;
+}
+.container-crear-factura .tabla-compra .footer .container-remove button:hover{
+    background-color: #5a5a5a;
+    box-shadow: var(--secondary-box-shadow);
+    transition: 0.3s;
+    scale: 0.99;
+}
+
+.container-crear-factura .tabla-compra .footer .container-add button{
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 24px;
+    border: none;
+    background-color: #686868;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--White-color);
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: var(--secondary-box-shadow);
+    scale: 0.95;
+}
+
+.container-crear-factura .tabla-compra .footer .container-add button:hover{
+    background-color: #5a5a5a;
+    box-shadow: var(--secondary-box-shadow);
+    transition: 0.3s;
+    scale: 0.99;
+}
+
+.container-crear-factura .tabla-compra .header p{
+    margin-bottom: 0;
+    padding: 5px 0px 5px 0px;
+}
+
+.container-crear-factura .tabla-compra .footer p{
+    margin-bottom: 0;
+    padding: 5px 0px 5px 0px;
+}
+
+div h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+.content-table1 {
+    padding:  5px  0px 0px 10px !important;
+}
+

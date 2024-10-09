@@ -29,7 +29,7 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
-      "prettier/prettier": ["error", { "endOfLine": "auto" }],
+      // "prettier/prettier": ["error", { "endOfLine": "auto" }],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
