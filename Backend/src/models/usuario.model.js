@@ -23,10 +23,11 @@ const usuarioSchema = new Schema({
     },
     municipio: {
         type: String,
+        default:"",
         required: true
     },
     grupoProductor: {
-        type:String,
+        type: String,
         required: true
     },
     rol: {
@@ -37,7 +38,7 @@ const usuarioSchema = new Schema({
     },
     acopiador: {
         type: String,
-        default:""
+        default:"",
     },
     estado: {
         type: Boolean,

@@ -1,11 +1,9 @@
-
-export const validateSchema = (schema) => async (data) => {
+export const validateSchema = (schema) => (req, res, next) => {
     try {
-      
-      schema.parse(data);
-      return null; 
+        schema.parse(req.body);
+        next();
     } catch (error) {
-      
-      throw error;
+        console.log(error);
+        return res.status(400).json({message:error.errors} );
     }
-  };
+};

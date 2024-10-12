@@ -1,14 +1,13 @@
-import mongoose from 'mongoose'
-import {MONGO_URL} from '../config.js'
+import mongoose from 'mongoose';
+import { MONGO_COMPASS, MONGO_URL } from '../config.js';
 
-const conectarDb = (async()=>{
-try {
-    mongoose.set("strictQuery", false);
-    const db = await mongoose.connect(MONGO_URL)
-    console.log("Conectado a la base de datos ", db.connection.name)
-} catch (error) {
-    console.log(error)
-}
-})
 
-export default conectarDb;
+(async()=>{
+    try {
+        mongoose.set("strictQuery", false);
+        const db = await mongoose.connect(MONGO_COMPASS);
+        console.log(`BASE DE DATOS CONECTADA ${db.connection.name}`);
+    } catch (error) {
+        console.log(error)
+    }
+})()

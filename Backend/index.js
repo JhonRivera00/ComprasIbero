@@ -1,6 +1,8 @@
-
 import app from "./src/app.js";
 import { PORT } from "./src/config.js";
+import "./src/database/db.js"
+
+
 
 
 app.use((req, res, next)=>{

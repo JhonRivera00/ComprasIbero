@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { Outlet, Navigate, useNavigate } from 'react-router-dom'; 
-import {jwtDecode} from 'jwt-decode';
+import { Outlet, useNavigate } from 'react-router-dom'; 
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import { jwtDecode } from 'jwt-decode';
 
 export const ProtectRoutesAdmin = ({ children }) => {
     const navigate = useNavigate();
@@ -10,42 +11,42 @@ export const ProtectRoutesAdmin = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem("token");
         
-        ( async () => {
+        (async () => {
             try {
                 const tokenUser = localStorage.getItem("token");
-            const token = {
-                headers: {
-                    "token": tokenUser,
-                    "Authorization": `Bearer ${tokenUser}`
-                },
-            };
-            const autoriza = await axios.get("/acceso-pagina",token);
-            if(!autoriza){
-                Swal.fire({
-                    title: "No tienes permisos para acceder a esta ruta",
-                    icon: "error",
-                    timer: 2000,
-                }).then(() => {
-                    setTimeout(() => {
-                        localStorage.removeItem("token");
-                        window.location.reload();
-                    }, 2000);
-                });
-            }
+                const config = {
+                    headers: {
+                        "token": tokenUser,
+                        "Authorization": `Bearer ${tokenUser}`
+                    },
+                };
+                const autoriza = await axios.get("/acceso-pagina", config);
+                if (!autoriza) {
+                    Swal.fire({
+                        title: "No tienes permisos para acceder a esta ruta",
+                        icon: "error",
+                        timer: 2000,
+                    }).then(() => {
+                        setTimeout(() => {
+                            localStorage.removeItem("token");
+                            window.location.reload();
+                        }, 2000);
+                    });
+                }
             } catch (error) {
+                console.log(error.message);
                 Swal.fire({
-                    title: "Tiempo de conexion expirado",
+                    title: "Tiempo de conexión expirado",
                     icon: "error",
                     timer: 2000,
                 }).then(() => {
-                        localStorage.removeItem("token");
-                        navigate("/"); 
-                        window.location.reload();
-                    
+                    localStorage.removeItem("token");
+                    navigate("/"); 
+                    window.location.reload();
                 });
             }
-            
         })();
+
         if (token) {
             const { rol } = jwtDecode(token);
             
@@ -65,10 +66,14 @@ export const ProtectRoutesAdmin = ({ children }) => {
             navigate("/"); 
             window.location.reload(); 
         }
-
     }, [navigate]);
 
     return children ? children : <Outlet />;
+};
+
+// Agrega la validación de PropTypes
+ProtectRoutesAdmin.propTypes = {
+    children: PropTypes.node
 };
 
 export const ProtectRoutesAcopio = ({ children }) => {
@@ -76,44 +81,45 @@ export const ProtectRoutesAcopio = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        ( async () => {
+
+        (async () => {
             try {
                 const tokenUser = localStorage.getItem("token");
-            const token = {
-                headers: {
-                    "token": tokenUser,
-                    "Authorization": `Bearer ${tokenUser}`
-                },
-            };
-            const autoriza = await axios.get("/acceso-pagina",token);
-            if(!autoriza){
+                const config = {
+                    headers: {
+                        "token": tokenUser,
+                        "Authorization": `Bearer ${tokenUser}`
+                    },
+                };
+                const autoriza = await axios.get("/acceso-pagina", config);
+                if (!autoriza) {
+                    Swal.fire({
+                        title: "No tienes permisos para acceder a esta ruta",
+                        icon: "error",
+                        timer: 2000,
+                    }).then(() => {
+                        setTimeout(() => {
+                            localStorage.removeItem("token");
+                            window.location.reload();
+                        }, 2000);
+                    });
+                }
+            } catch (error) {
+                console.log(error)
                 Swal.fire({
-                    title: "No tienes permisos para acceder a esta ruta",
+                    title: "Tiempo de conexión expirado",
                     icon: "error",
                     timer: 2000,
                 }).then(() => {
                     setTimeout(() => {
                         localStorage.removeItem("token");
+                        navigate("/"); 
                         window.location.reload();
                     }, 2000);
                 });
             }
-            } catch (error) {
-                Swal.fire({
-                    title: "Tiempo de conexion expirado",
-                    icon: "error",
-                    timer: 2000,
-                }).then(() => {
-                    setTimeout(()=>{
-                        localStorage.removeItem("token");
-                        navigate("/"); 
-                        window.location.reload();
-                    
-                    },2000);
-                });
-            }
-            
         })();
+
         if (token) {
             const { rol } = jwtDecode(token);
             if (rol !== "Acopiador") {
@@ -131,9 +137,13 @@ export const ProtectRoutesAcopio = ({ children }) => {
         } else {
             navigate("/");
             window.location.reload();
-
         }
     }, [navigate]);
 
     return children ? children : <Outlet />;
+};
+
+// Agrega la validación de PropTypes
+ProtectRoutesAcopio.propTypes = {
+    children: PropTypes.node
 };

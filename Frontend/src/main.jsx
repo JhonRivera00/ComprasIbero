@@ -8,7 +8,7 @@ import "./Css/style.css"
 import App from './Routes/App'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:3001/api'
+axios.defaults.baseURL = 'http://localhost:3005/api'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
